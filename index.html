@@ -45,7 +45,9 @@
           [3, 4, 5],
           [6, 7, 8],
         ];
+
         var c = 0;
+
         boxes.forEach(khem);
         function khem(box) {
           box.addEventListener("click", () => {
@@ -57,17 +59,10 @@
               turn0 = true;
             }
             box.disabled = true;
-            checkwinner();
             c = c + 1;
-            if (c != 9) {
-              checkwinner();
-            } else {
-              var ishan = checkwinner1();
-              console.log(ishan);
-              if (ishan == 1) {
-                checkdraw();
-              }
-              console.log(c);
+            let ishan = checkwinner();
+            if (c == 9 && !ishan) {
+              checkdraw();
             }
           });
         }
