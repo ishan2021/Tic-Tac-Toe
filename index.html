@@ -58,9 +58,17 @@
             }
             box.disabled = true;
             checkwinner();
-            // if (c == 9) {
-            //   checkdraw();
-            // }
+            c = c + 1;
+            if (c != 9) {
+              checkwinner();
+            } else {
+              var ishan = checkwinner1();
+              console.log(ishan);
+              if (ishan == 1) {
+                checkdraw();
+              }
+              console.log(c);
+            }
           });
         }
         function checkdraw() {
@@ -72,10 +80,10 @@
           msgcontainer.classList.remove("hide");
         }
         function resetgame() {
+          c = 0;
           turn0 = true;
           enableboxes();
           msgcontainer.classList.add("hide");
-          c = 0;
         }
         function enableboxes() {
           for (let box of boxes) {
@@ -92,6 +100,20 @@
               if (p1 == p2 && p2 == p3) {
                 showwinner(p1);
               }
+            }
+          }
+        }
+        function checkwinner1() {
+          for (let pattern of winpattern) {
+            let p1 = boxes[pattern[0]].innerText;
+            let p2 = boxes[pattern[1]].innerText;
+            let p3 = boxes[pattern[2]].innerText;
+            if (p1 != "" && p2 != "" && p3 != "") {
+              if (p1 == p2 && p2 == p3) {
+                showwinner(p1);
+              }
+            } else {
+              return 1;
             }
           }
         }
